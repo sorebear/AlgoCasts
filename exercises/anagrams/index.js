@@ -8,6 +8,68 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+    return sortString(stringA) === sortString(stringB);
+}
+
+function sortString(string) {
+    return string.toLowerCase().replace(/[^a-z]/g, "").split("").sort().join("");
+}
 
 module.exports = anagrams;
+
+// SOREN SOLUTION #1:  
+// function anagrams(stringA, stringB) {
+//     const strippedStringA = stringA.toLowerCase().replace(/[^a-z]/g, "");
+//     const strippedStringB = stringB.toLowerCase().replace(/[^a-z]/g, "");
+//     if (strippedStringA.length !== strippedStringB.length) { 
+//         return false 
+//     }
+//     const charMapA = strippedStringA.split('').reduce((obj, char) => {
+//         obj[char] = obj[char] + 1 || 1
+//         return obj;
+//     }, {});
+//     const charMapB = strippedStringB.split('').reduce((obj, char) => {
+//         obj[char] = obj[char] + 1 || 1
+//         return obj;
+//     }, {});
+//     for (let char in charMapA) {
+//         if (charMapA[char] !== charMapB[char]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// STEPHEN SOLUTION #1: 
+// function anagrams(stringA, stringB) {
+//     const aCharMap = buildCharMap(stringA);
+//     const bCharMap = buildCharMap(stringB);
+//     if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+//         return false;
+//     }
+//     for (let char in aCharMap) {
+//         if (aCharMap[char] !== bCharMap[char]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// function buildCharMap(str) {
+//     const charMap = {};
+//     for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
+//         charMap[char] = charMap[char] + 1 || 1;
+//     }
+//     return charMap;
+// }
+
+// STEPHEN SOLUTION #2:
+// function anagrams(stringA, stringB) {
+//     return sortString(stringA) === sortString(stringB);
+// }
+
+// function sortString(string) {
+//     return string.toLowerCase().replace(/[^a-z]/g, "").split("").sort().join("");
+// }
+

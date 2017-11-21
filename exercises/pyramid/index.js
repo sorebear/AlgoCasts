@@ -13,7 +13,48 @@
 //       '  #  '
 //       ' ### '
 //       '#####'
+//   pyramid(4)
+//      '   #   '
+//      '  ###  '
+//      ' ##### '
+//      '#######'
 
-function pyramid(n) {}
+function pyramid(n, row = 0, step = '') {
+    if (row >= n) {
+        return;
+    }
+
+    if (step.length === n * 2 - 1) {
+        console.log(step);
+        return pyramid(n, row + 1);
+    }
+
+    if (step.length + 1 >= n - row && step.length + 1 <= n + row) {
+        step += "#";
+    } else {
+        step += " ";
+    }
+    pyramid(n, row, step);
+}
 
 module.exports = pyramid;
+
+
+// SOREN RECURSION SOLUTION #1: 
+// function pyramid(n, row = 0, step = '') {
+//     if (row >= n) {
+//         return;
+//     }
+//
+//     if (step.length === n * 2 - 1) {
+//         console.log(step);
+//         return pyramid(n, row + 1);
+//     }
+//
+//     if (step.length + 1 >= n - row && step.length + 1 <= n + row) {
+//         step += "#";
+//     } else {
+//         step += " ";
+//     }
+//     pyramid(n, row, step);
+// }
